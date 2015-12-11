@@ -3,6 +3,7 @@ from subprocess import check_output
 
 from flask import Flask
 from flask import request
+from flask.json import jsonify
 
 # Import from the 21 Bitcoin Developer Library
 from two1.lib.wallet import Wallet
@@ -15,6 +16,26 @@ import time
 app = Flask(__name__)
 wallet = Wallet()
 payment = Payment(app, wallet)
+
+
+@app.route('/info')
+def get_info():
+    """Returns details about available endpoints"""
+
+    info = { 
+        'endpoints': {
+            'per-req': 1,
+            'returns': {
+                'name': 'timestamp',
+                'description': 'Python UTC timestamp'},
+            'name': 'value',
+            'description': '21BC hashrate in GH/s',
+            'route': '/measurement',
+            'description':'Current 21BC mininig hashrate in GH/s'
+        }   
+    }
+
+    return jsonify(info)
 
 # Charge a fixed fee of 10 satoshis per request to the
 # /measurement endpoint

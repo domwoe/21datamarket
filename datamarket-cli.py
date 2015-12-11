@@ -20,7 +20,7 @@ valid_keys = [ 'name', 'endpoint', 'datatype', 'location', 'description', 'type'
 mandatory_keys = ['name', 'endpoint','datatype','type','unit','price']
 
 # Example
-# '{"name": "21BC hashrate", "endpoint": "127.0.0.1:3002/measurement", "datatype": "float", "type":"hashrate", "unit": "GH/s", "price":2 }'
+# '{"name": "21BC hashrate", "endpoint": "htto://127.0.0.1:3002/measurement", "datatype": "float", "type":"hashrate", "unit": "GH/s", "price":2 }'
 # 
 @click.group()
 def cli():
