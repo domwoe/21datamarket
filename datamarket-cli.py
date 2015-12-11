@@ -1,3 +1,7 @@
+#
+# Datamarket Command Line Interface
+#
+
 import sys
 import json
 import click
