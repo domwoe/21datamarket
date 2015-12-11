@@ -10,6 +10,12 @@ For data producers the datamarket command line interface allows to publish and r
 
 #### Installation
 
+```bash
+git clone https://github.com/domwoe/21datamarket.git
+cd ./21datamarket
+sudo pip3 install --editable .
+```
+
 #### Usage
 
 ##### Publish
