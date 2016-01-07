@@ -27,15 +27,14 @@ registry = db_client.registry # database
 sensors = registry.sensors # collection
 
 
-def valid_publish_request(cursor, request):
+def valid_publish_request(request):
 	"""Checks if request is a valid publish request"""
     # TODO
 	return True
 
 def get_publish_price(request):
     """Calculates price according to hours to be registered"""
-    cursor = connection.cursor()
-    if not valid_publish_request(cursor, request):
+    if not valid_publish_request(request):
         return "invalid publish request"
 
     hours = int(request.args.get('hours'))
@@ -57,11 +56,12 @@ def add_sensor():
 
     expire_date = datetime.now() + timedelta(hours=hours)
 
+    print(sensor)
     sensor = json.loads(sensor)
     sensor['expireAt'] = expire_date
 
-
     sensor_id = sensors.insert_one(sensor).inserted_id
+    print(sensor_id)
 
     return json.dumps({'sensor_id' : str(sensor_id), 'expireAt': expire_date.strftime("%Y-%m-%d %H:%M:%S")})
 
