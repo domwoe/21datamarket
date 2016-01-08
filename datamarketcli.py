@@ -17,8 +17,8 @@ wallet = Wallet()
 username = Config().username
 requests = BitTransferRequests(wallet, username)
 
-#server address
-server_url = 'http://localhost:3100/'
+# URL of datamarket backend
+server_url = 'http://10.147.17.77:3100/'
 
 valid_keys = [ 'name', 'endpoint', 'datatype', 'location', 'description', 'type','unit','price','min','max','interval','accuracy','manufacturer']
 mandatory_keys = ['name', 'endpoint','datatype','type','unit','price']

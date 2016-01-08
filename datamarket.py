@@ -57,12 +57,10 @@ def add_sensor():
 
     expire_date = datetime.now() + timedelta(hours=hours)
 
-    print(sensor)
     sensor = json.loads(sensor)
     sensor['expireAt'] = expire_date
 
     sensor_id = sensors.insert_one(sensor).inserted_id
-    print(sensor_id)
 
     return json.dumps({'sensor_id' : str(sensor_id), 'expireAt': expire_date.strftime("%Y-%m-%d %H:%M:%S")})
 

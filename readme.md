@@ -1,7 +1,10 @@
 ## 21 Datamarket
 
+The Internet of Things is digitalizing the physical world we are living in. Real-time measurement data from billions of devices will be the basis for better decisions. However, real-time measurement data has to be available publicly to unleash their full potential. Therefore, sensors have to be compensated for providing this service.
 
-The datamarket allows to publish sensors to sell their measurement data. Data requesters are able to query the datamarket for sensors and buy data directly from the sensor in peer-to-peer fashion.
+The 21 datamarket allows to publish sensors to sell their measurement data. Data requesters are able to query the datamarket for sensors and buy data directly from the sensor in peer-to-peer fashion.
+
+In this repository you'll find a simple implementation of this concept. I'd be very happy to receive feedback and suggestions. 
 
 
 ### Datamarket-cli
@@ -20,7 +23,7 @@ sudo pip3 install --editable .
 
 ##### Publish
 ```bash
-datamarket publish --hours=10 '{"name": "21BC hashrate", "endpoint": "http://127.0.0.1:3002/measurement", "datatype": "float", "type":"hashrate", "unit": "GH/s", "price":2 }'
+datamarket publish --hours=10 '{"name": "21BC hashrate", "endpoint": "http://10.147.17.77:3002/measurement", "datatype": "float", "type":"hashrate", "unit": "GH/s", "price":2 }'
 ```
 Publishes a sensor on the datamarket sensor registry. Entries will expire after defined hours (default is 1 hour). Each hour costs 2 Satoshis.
 
@@ -52,12 +55,13 @@ datamarket buy '56698e32961b6b64b473e71c'
 ```
 Returns
 ```bash
-{"timestamp": "1234123432.2342", "vakue": "52.1"}
+{"timestamp": "1234123432.2342", "value": "52.1"}
 ```
+Moreover, you can pipe the results of a query directly to the buy command.
 
 Alternatively sensor data can be bought using the 21 buy command and the endpoint url
 ```bash
-21 buy url http://localhost:3002/measurement
+21 buy url http://10.147.17.77:3002/measurement
 ```
 
 ### Data producer
