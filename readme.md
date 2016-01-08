@@ -20,7 +20,7 @@ sudo pip3 install --editable .
 
 ##### Publish
 ```bash
-datamarket publish --hours=10 '{"name": "21BC hashrate", "endpoint": "htto://127.0.0.1:3002/measurement", "datatype": "float", "type":"hashrate", "unit": "GH/s", "price":2 }'
+datamarket publish --hours=10 '{"name": "21BC hashrate", "endpoint": "http://127.0.0.1:3002/measurement", "datatype": "float", "type":"hashrate", "unit": "GH/s", "price":2 }'
 ```
 Publishes a sensor on the datamarket sensor registry. Entries will expire after defined hours (default is 1 hour). Each hour costs 2 Satoshis.
 

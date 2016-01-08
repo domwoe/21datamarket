@@ -15,6 +15,7 @@ from pymongo import MongoClient
 from datetime import datetime, timedelta
 import json
 from bson import json_util
+from bson.objectid import ObjectId
 
 # Configure the app and wallet
 app = Flask(__name__)
@@ -96,6 +97,16 @@ def query_registry():
         json_docs.append(json_doc)
 
     return jsonify({'results':json_docs})
+
+@app.route('/endpoint')
+def get_endpoint():
+    """Query sensor registry"""
+
+    sensor_id = request.args.get('id')
+
+    result = sensors.find_one({'_id': ObjectId(sensor_id)})
+
+    return result['endpoint']
 
 
 # Initialize and run the server

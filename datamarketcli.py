@@ -100,18 +100,46 @@ def cmd_query(query):
 def cmd_buy(sensor):
 	"""Buy measurement from sensor by id or endpoint"""
 
-	if sensor.find('.') == -1 & sensor.find(':') == -1:
-		#id
-		# TODO: Get uri from id
-		click.echo('Currently only ids are supported')
-		raise SystemExit
+	if sensor == "":
+		# Is piped from query
+		try:
+			sensors = sys.stdin.read()
+			sensors.find('results')
+		except:
+			click.echo('Unknown input for buy')
+			raise SystemExit
 
+		sensors = json.loads(json.dumps(sensors))
+		for sensor in sensors:
+			try:
+				endpoint = sensor['endpoint']
+				response = requests.get(url=endpoint)
+				data = json.loads(response.json())
+				data.sensor_id = sensor['_id']['$oid']
+				click.echo(jsonify(data))
+			except:
+				print('huh')
 	else:
-		endpoint = sensor
 
-	response = requests.get(url=endpoint)
+		if sensor.find('.') == -1 & sensor.find(':') == -1:
+			# is a sensor id 
+			sensor_id = sensor
+			url = server_url+'endpoint?id={0}'
 
-	click.echo(response.json())
+			response = requests.get(url=url.format(sensor_id))
+
+			try:
+				endpoint = response.text
+			except:
+				click.echo('Sensor not found or no valid endpoint')
+				raise SystemExit
+		else:
+			# is a endpoint url
+			endpoint = sensor
+
+		response = requests.get(url=endpoint)
+
+		click.echo(response.json())
 
 
 

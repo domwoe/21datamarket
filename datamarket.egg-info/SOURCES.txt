@@ -1,0 +1,8 @@
+datamarket-cli.py
+datamarketcli.py
+datamarket.egg-info/PKG-INFO
+datamarket.egg-info/SOURCES.txt
+datamarket.egg-info/dependency_links.txt
+datamarket.egg-info/entry_points.txt
+datamarket.egg-info/requires.txt
+datamarket.egg-info/top_level.txt
