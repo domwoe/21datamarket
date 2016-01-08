@@ -91,12 +91,12 @@ def query_registry():
     results = sensors.find(query)
 
     json_docs = []
+    
     for doc in results:
         #doc.pop("expireAt",None)
-        json_doc = json.dumps(doc, default=json_util.default)
-        json_docs.append(json_doc)
+        json_docs.append(doc)
 
-    return jsonify({'results':json_docs})
+    return json.dumps(json_docs,default=json_util.default)
 
 @app.route('/endpoint')
 def get_endpoint():

@@ -92,33 +92,34 @@ def cmd_query(query):
 
 	url = server_url+'query?query={0}'
 	response = requests.get(url=url.format(query))
-	click.echo(response.json())
+	click.echo(response.text)
 
 
 @click.command(name='buy')
-@click.argument('sensor')
+@click.argument('sensor', default='')
 def cmd_buy(sensor):
 	"""Buy measurement from sensor by id or endpoint"""
 
-	if sensor == "":
+	if sensor == '':
 		# Is piped from query
 		try:
 			sensors = sys.stdin.read()
-			sensors.find('results')
 		except:
 			click.echo('Unknown input for buy')
 			raise SystemExit
 
-		sensors = json.loads(json.dumps(sensors))
+		sensors = json.loads(sensors)
+
 		for sensor in sensors:
 			try:
 				endpoint = sensor['endpoint']
 				response = requests.get(url=endpoint)
-				data = json.loads(response.json())
-				data.sensor_id = sensor['_id']['$oid']
-				click.echo(jsonify(data))
+				data = json.loads(response.text)
+				data['sensor_id'] = sensor['_id']['$oid']
+				click.echo(json.dumps(data))
 			except:
-				print('huh')
+				click.echo('No endpoint')
+	
 	else:
 
 		if sensor.find('.') == -1 & sensor.find(':') == -1:

@@ -1,4 +1,3 @@
-datamarket-cli.py
 datamarketcli.py
 datamarket.egg-info/PKG-INFO
 datamarket.egg-info/SOURCES.txt
