@@ -2,3 +2,5 @@ venv
 *.sqlite3
 *.log
 *.out
+datamarket.egg-info
+__pycache__
