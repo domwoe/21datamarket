@@ -2,7 +2,7 @@
 
 The Internet of Things is digitalizing the physical world we are living in. Real-time measurement data from billions of devices will be the basis for better decisions. However, real-time measurement data has to be available publicly to unleash their full potential. Therefore, sensors have to be compensated for providing this service.
 
-The 21 datamarket allows to publish sensors to sell their measurement data. Data requesters are able to query the datamarket for sensors and buy data directly from the sensor in peer-to-peer fashion.
+Datamarket allows to publish sensors to sell their measurement data. Data requesters are able to query the datamarket for sensors and buy data directly from the sensor in peer-to-peer fashion.
 
 In this repository you'll find a simple implementation of this concept. I'd be very happy to receive feedback and suggestions. 
 
