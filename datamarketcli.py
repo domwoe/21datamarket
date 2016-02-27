@@ -5,12 +5,16 @@
 import sys
 import json
 import click
+import os
 
 #import from the 21 Developer Library
 from two1.commands.config import Config
 from two1.lib.wallet import Wallet
 from two1.lib.bitrequests import BitTransferRequests
 from two1.lib.bitcoin.crypto import PublicKeyBase
+
+#from daemon import Daemon
+#from sensor import Sensor
 
 #set up bitrequest client for BitTransfer requests:
 wallet = Wallet()
@@ -25,10 +29,17 @@ mandatory_keys = ['name', 'endpoint','datatype','type','unit','price']
 
 # Example
 # '{"name": "21BC hashrate", "endpoint": "htto://127.0.0.1:3002/measurement", "datatype": "float", "type":"hashrate", "unit": "GH/s", "price":2 }'
-# 
+#
+
+
+#class SensorDaemon(Daemon):
+#        my_sensor = Sensor()
+
+#daemon = SensorDaemon('/tmp/sensor.pid')
+
 @click.group()
 def cli():
-	"""Main"""
+	"""Datamarket Command Line Interface (CLI)"""
 
 @click.command(name='publish')
 @click.argument('sensor')
@@ -78,7 +89,7 @@ def cmd_publish(sensor,hours):
 @click.argument('sensor')
 @click.option('--hours', default=1, type=int)
 def cmd_renew(sensor, hours):
-	"""Renew entry in sensor registry buy hours"""
+	"""Renew entry in sensor registry by hours"""
 
 	url = server_url + 'renew?id={0}&hours={1}'
 	response = requests.get(url=url.format(sensor, hours))
@@ -142,17 +153,27 @@ def cmd_buy(sensor):
 
 		click.echo(response.json())
 
+@click.command(name='open')
+def cmd_open():
+	"""Open sensor endpoint"""
+	os.system("python3 sensor.py > sensor.log &")
+
+
+@click.command(name='close')
+def cmd_close():
+	"""Close sensor endpoint"""
+	daemon.stop()		
+
 
 
 	 
-
-
-
 
 cli.add_command(cmd_publish)
 cli.add_command(cmd_renew)
 cli.add_command(cmd_query)
 cli.add_command(cmd_buy)
+cli.add_command(cmd_open)
+cli.add_command(cmd_close)
 
 if __name__ == "__main__":
-    cli()
+	cli()

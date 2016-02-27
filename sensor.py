@@ -16,12 +16,11 @@ import json
 import time
 
 # Configure the app and wallet
-# 
-class Sensor():
+app = Flask(__name__)
+wallet = Wallet()
+payment = Payment(app, wallet)
 
-    app = Flask(__name__)
-    wallet = Wallet()
-    payment = Payment(app, wallet)
+class Sensor():
 
 
     @app.route('/info')

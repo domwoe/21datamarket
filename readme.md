@@ -44,6 +44,7 @@ Returns
 ```
 
 ##### Query
+
 ```bash
 datamarket query '{"type": "temperature"}'
 ```
