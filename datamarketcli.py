@@ -9,9 +9,9 @@ import os
 
 #import from the 21 Developer Library
 from two1.commands.config import Config
-from two1.lib.wallet import Wallet
-from two1.lib.bitrequests import BitTransferRequests
-from two1.lib.bitcoin.crypto import PublicKeyBase
+from two1.wallet import Wallet
+from two1.bitrequests import BitTransferRequests
+from two1.bitcoin.crypto import PublicKeyBase
 
 #from daemon import Daemon
 #from sensor import Sensor

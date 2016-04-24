@@ -7,8 +7,8 @@ from flask import request
 from flask.json import jsonify
 
 # Import from the 21 Bitcoin Developer Library
-from two1.lib.wallet import Wallet
-from two1.lib.bitserv.flask import Payment
+from two1.wallet import Wallet
+from two1.bitserv.flask import Payment
 
 from pymongo import MongoClient
 
@@ -40,7 +40,7 @@ def get_publish_price(request):
 
     hours = int(request.args.get('hours'))
 
-    price = hours * 2                # 2 satoshis per hour
+    price = hours * 2 # 2 satoshis per hour
 
     if price < 2:
         price = 2

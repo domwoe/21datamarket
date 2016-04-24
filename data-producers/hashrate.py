@@ -9,8 +9,8 @@ from flask import request
 from flask.json import jsonify
 
 # Import from the 21 Bitcoin Developer Library
-from two1.lib.wallet import Wallet
-from two1.lib.bitserv.flask import Payment
+from two1.wallet import Wallet
+from two1.bitserv.flask import Payment
 
 import json
 import time
